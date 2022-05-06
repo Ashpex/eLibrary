@@ -6,10 +6,10 @@ class PopularBookModel {
       this.description);
 }
 
-List<PopularBookModel> populars = popularBookData
-    .map((item) => PopularBookModel(item['title'], item['author'],
-        item['price'], item['image'], item['color'], item['description']))
-    .toList();
+// List<PopularBookModel> populars = popularBookData
+//     .map((item) => PopularBookModel(item['title']!, item['author']!,
+//         item['price']!, item['image']!, item['color']!, item['description']!))
+//     .toList();
 
 var popularBookData = [
   {
