@@ -1,12 +1,20 @@
+import 'package:elibrary/librarian/main.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter/services.dart';
 import 'screens/bookshelf_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/library_screen.dart';
 import 'screens/profile_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft])
+      .then((_) {
+    runApp(LibrarianMain(
+      name: "Nguyên",
+    ));
+  });
+  // runApp(LibrarianMain(name: "nguyen",));
 }
 
 class MyApp extends StatelessWidget {
