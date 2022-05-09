@@ -27,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Text(
                       'Hi, Ashpex',
                       style: GoogleFonts.openSans(
+                        
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
                           color: Colors.grey),
