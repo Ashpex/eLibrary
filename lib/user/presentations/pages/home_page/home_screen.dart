@@ -4,8 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:elibrary/librarian/data/sources/color_constants.dart';
 import 'package:elibrary/models/User.dart';
-import 'package:elibrary/models/newbook_model.dart';
-import 'package:elibrary/models/popularbook_model.dart';
+import 'package:elibrary/models/book.dart';
 
 import 'package:elibrary/widgets/custom_tab_indicator.dart';
 import 'package:elibrary/user/presentations/pages/book_info_page/book_info_screen.dart';
@@ -128,21 +127,32 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 210,
                 child: ListView.builder(
                     padding: EdgeInsets.only(left: 25, right: 6),
-                    itemCount: newbooks.length,
+                    itemCount: newBooks.length,
                     physics: BouncingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      return Container(
-                        margin: EdgeInsets.only(right: 19),
-                        height: 210,
-                        width: 153,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: colorTheme,
-                            image: DecorationImage(
-                              image: AssetImage(newbooks[index].image),
-                            )),
-                      );
+                      return GestureDetector(
+                          onTap: () {
+                            print('ListView Tapped');
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    BookInfoScreen(books: popularBooks[index]),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(right: 19),
+                            height: 210,
+                            width: 153,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: colorTheme,
+                                image: DecorationImage(
+                                  image: AssetImage(newBooks[index].image),
+                                )),
+                          ));
                     }),
               ),
               Padding(
@@ -159,7 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: EdgeInsets.only(top: 25, right: 25, left: 25),
                   physics: BouncingScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: populars.length,
+                  itemCount: popularBooks.length,
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
@@ -167,8 +177,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => BookInfoScreen(
-                                popularBookModel: populars[index]),
+                            builder: (context) =>
+                                BookInfoScreen(books: popularBooks[index]),
                           ),
                         );
                       },
@@ -185,7 +195,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
                                   image: DecorationImage(
-                                    image: AssetImage(populars[index].image),
+                                    image:
+                                        AssetImage(popularBooks[index].image),
                                   ),
                                   color: colorTheme),
                             ),
@@ -197,7 +208,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  populars[index].title,
+                                  popularBooks[index].title,
                                   style: GoogleFonts.openSans(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w600,
@@ -207,7 +218,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height: 5,
                                 ),
                                 Text(
-                                  populars[index].author,
+                                  popularBooks[index].author,
                                   style: GoogleFonts.openSans(
                                       fontSize: 10,
                                       fontWeight: FontWeight.w400,

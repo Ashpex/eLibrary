@@ -3,13 +3,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:elibrary/user/sources/color_constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:elibrary/widgets/custom_tab_indicator.dart';
-import 'package:elibrary/models/popularbook_model.dart';
+import 'package:elibrary/models/book.dart';
 
 class BookInfoScreen extends StatelessWidget {
-  final PopularBookModel popularBookModel;
+  final Book books;
 
   // ignore: prefer_const_constructors_in_immutables
-  BookInfoScreen({required this.popularBookModel});
+  BookInfoScreen({required this.books});
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class BookInfoScreen extends StatelessWidget {
                         child: GestureDetector(
                           onTap: () {
                             Navigator.pushReplacementNamed(
-                                context, "/homeScreen");
+                                context, "/HomeScreen");
                           },
                           child: Container(
                             width: 32,
@@ -70,7 +70,7 @@ class BookInfoScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             image: DecorationImage(
-                              image: AssetImage(popularBookModel.image),
+                              image: AssetImage(books.image),
                             ),
                           ),
                         ),
@@ -84,7 +84,7 @@ class BookInfoScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(top: 24, left: 25),
                   child: Text(
-                    popularBookModel.title,
+                    books.title,
                     style: GoogleFonts.openSans(
                         fontSize: 27,
                         color: Colors.black,
@@ -94,7 +94,7 @@ class BookInfoScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(top: 7, left: 25),
                   child: Text(
-                    popularBookModel.author,
+                    books.author,
                     style: GoogleFonts.openSans(
                         fontSize: 14,
                         color: Colors.grey,
@@ -166,7 +166,7 @@ class BookInfoScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: 25, right: 25, bottom: 25),
                   child: Text(
-                    popularBookModel.description,
+                    books.description,
                     style: GoogleFonts.openSans(
                       fontSize: 12,
                       fontWeight: FontWeight.w400,
