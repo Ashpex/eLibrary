@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:elibrary/librarian/data/sources/color_constants.dart';
 import 'package:elibrary/models/User.dart';
-import 'package:elibrary/models/book.dart';
+import 'package:elibrary/models/Book.dart';
 
 import 'package:elibrary/widgets/custom_tab_indicator.dart';
 import 'package:elibrary/user/presentations/pages/book_info_page/book_info_screen.dart';
@@ -49,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 margin: EdgeInsets.only(left: 25, right: 25, top: 18),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.grey),
+                    color: Colors.grey[300]),
                 child: Stack(
                   children: <Widget>[
                     TextField(
@@ -65,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           hintText: 'Search book..',
                           hintStyle: GoogleFonts.openSans(
                               fontSize: 12,
-                              color: Colors.grey,
+                              color: Colors.grey[600],
                               fontWeight: FontWeight.w600)),
                     ),
                     Positioned(

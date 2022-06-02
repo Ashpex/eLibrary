@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:elibrary/user/sources/color_constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:elibrary/widgets/custom_tab_indicator.dart';
-import 'package:elibrary/models/book.dart';
+import 'package:elibrary/models/Book.dart';
 
 class BookInfoScreen extends StatelessWidget {
   final Book books;
