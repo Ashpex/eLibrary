@@ -3,8 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../data/models/User.dart';
-import '../../data/models/newbook_model.dart';
-import '../../data/models/popularbook_model.dart';
+import '../../../models/newbook_model.dart';
+import '../../../models/popularbook_model.dart';
 
 import '../../../../../../widgets/custom_tab_indicator.dart';
 

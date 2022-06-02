@@ -1,10 +1,6 @@
 import 'package:elibrary/librarian/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'screens/bookshelf_screen.dart';
-import 'screens/home_screen.dart';
-import 'screens/library_screen.dart';
-import 'screens/profile_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -64,12 +60,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int currentIndex = 0;
   int _counter = 0;
-  final Screens = [
-    HomeScreen(),
-    LibraryScreen(),
-    BookshelfScreen(),
-    ProfileScreen(),
-  ];
+  final Screens = [];
 
   void _incrementCounter() {
     setState(() {
@@ -93,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: IndexedStack(
         index: currentIndex,
-        children: Screens,
+        //children: Screens,
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,

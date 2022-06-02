@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../../../../models/newbook_model.dart';
+import '../../../models/newbook_model.dart';
 import '../../../../../../widgets/custom_tab_indicator.dart';
 
 class HomeScreen extends StatefulWidget {
