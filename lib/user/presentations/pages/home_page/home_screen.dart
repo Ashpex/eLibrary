@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../data/models/User.dart';
-import '../../../models/newbook_model.dart';
-import '../../../models/popularbook_model.dart';
+import '../../../data/models/User.dart';
+import '../../../../models/newbook_model.dart';
+import '../../../../models/popularbook_model.dart';
 
-import '../../../../../../widgets/custom_tab_indicator.dart';
+import '../../../../../../../widgets/custom_tab_indicator.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Stack(
                   children: <Widget>[
                     TextField(
-                      maxLengthEnforced: true,
+                      //maxLengthEnforced: true,
                       style: GoogleFonts.openSans(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
