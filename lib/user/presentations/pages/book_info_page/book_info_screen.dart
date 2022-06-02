@@ -22,7 +22,7 @@ class BookInfoScreen extends StatelessWidget {
           color: colorTheme,
           onPressed: () {},
           child: Text(
-            'Add to Library',
+            'Borrow',
             style: GoogleFonts.openSans(
                 fontSize: 14, fontWeight: FontWeight.w600, color: Colors.white),
           ),
@@ -107,14 +107,14 @@ class BookInfoScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          '\$',
+                          'Rating: ',
                           style: GoogleFonts.openSans(
                               fontSize: 14,
                               color: colorTheme,
                               fontWeight: FontWeight.w600),
                         ),
                         Text(
-                          "Stars: 5",
+                          " 5",
                           //popularBookModel.stars,
                           style: GoogleFonts.openSans(
                               fontSize: 32,
