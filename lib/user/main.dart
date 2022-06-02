@@ -35,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final Screens = <Widget>[
     HomeScreen(),
     CategoryScreen(),
-    BookshelfScreen(),
+    BookShelfScreen(),
     ProfileScreen(
       user: User(
           id: 1,
