@@ -1,8 +1,9 @@
 import 'package:elibrary/user/presentations/pages/bookshelf_page/bookshelf_screen.dart';
 import 'package:elibrary/user/presentations/pages/home_page/home_screen.dart';
-import 'package:elibrary/user/presentations/pages/library_page/library_screen.dart';
+import 'package:elibrary/user/presentations/pages/category_page/category_screen.dart';
 import 'package:elibrary/user/presentations/pages/profile_page/profile_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:elibrary/models/User.dart';
 
 class UserMain extends StatelessWidget {
   const UserMain({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class UserMain extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'eLibrary',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
       home: const MyHomePage(title: 'eLibrary'),
     );
@@ -33,14 +34,22 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   final Screens = <Widget>[
     HomeScreen(),
-    LibraryScreen(),
+    CategoryScreen(),
     BookshelfScreen(),
-    ProfileScreen(),
+    ProfileScreen(
+      user: User(
+          id: 1,
+          account: 'ashpex',
+          name: 'Ashpex',
+          password: '123123',
+          phoneNumber: '099999999',
+          gender: 2,
+          address: '12/12 Random Street'),
+    )
   ];
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: IndexedStack(
         index: currentIndex,
@@ -48,8 +57,8 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Color(0xFF9bbae6),
+        selectedItemColor: Colors.green,
+        unselectedItemColor: Color.fromARGB(255, 155, 230, 188),
         backgroundColor: Colors.white,
         onTap: (int index) {
           setState(() {
