@@ -15,9 +15,9 @@ Widget textWidget(text, color, size, fontWeight, {TextAlign? textAlign}) {
   );
 }
 
-Widget textFormField(emailController, icon, hintText, labelText, onChanged) {
+Widget textFormField(controller,icon, hintText, labelText, onChanged) {
   return TextFormField(
-    controller: emailController,
+    controller: controller,
     style: const TextStyle(color: Colors.black),
     decoration: inputDecoration(icon, hintText, labelText),
     onSaved: (String? value) {},
@@ -33,6 +33,6 @@ InputDecoration inputDecoration(icon, hintText, labelText) {
     hintStyle: const TextStyle(color: Colors.grey),
     hintText: hintText,
     labelText: labelText,
-    suffixIcon: icon,
+    suffixIcon: icon,  
   );
 }

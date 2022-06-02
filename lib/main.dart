@@ -13,5 +13,6 @@ void main() {
   //     name: "Nguyên",
   //   ));
   // });
-  runApp(UserMain());
+  runApp(MaterialApp(home: SplashPage()));
+  //runApp(UserMain());
 }
