@@ -1,3 +1,4 @@
+import 'package:elibrary/presentations/pages/splash/splash.dart';
 import 'package:elibrary/user/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,6 +13,8 @@ void main() {
   //     name: "Nguyên",
   //   ));
   // });
-  runApp(const UserMain());
+  runApp(const MaterialApp(
+    home: SplashPage() ,
+    ));
 }
 
