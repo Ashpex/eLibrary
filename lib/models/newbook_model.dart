@@ -5,7 +5,7 @@ class NewBookModel {
 }
 
 List<NewBookModel> newbooks =
-    newBookData.map((item) => NewBookModel(item['image']!)).toList();
+    newBookData.map((item) => NewBookModel(item['image'] as String)).toList();
 
 var newBookData = [
   {"image": "assets/images/img_newbook1.png"},
