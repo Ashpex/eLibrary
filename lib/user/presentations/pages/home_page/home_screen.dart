@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../../librarian/data/sources/color_constants.dart';
-import '../../../data/models/User.dart';
-import '../../../../models/newbook_model.dart';
-import '../../../../models/popularbook_model.dart';
+import 'package:elibrary/librarian/data/sources/color_constants.dart';
+import 'package:elibrary/models/User.dart';
+import 'package:elibrary/models/newbook_model.dart';
+import 'package:elibrary/models/popularbook_model.dart';
 
-import '../../../../../../../widgets/custom_tab_indicator.dart';
+import 'package:elibrary/widgets/custom_tab_indicator.dart';
+import 'package:elibrary/user/presentations/pages/book_info_page/book_info_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -163,13 +164,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     return GestureDetector(
                       onTap: () {
                         print('ListView Tapped');
-                        //Navigator.pushReplacement(
-                        //context,
-                        //MaterialPageRoute(
-                        //builder: (context) => SelectedBookScreen(
-                        //popularBookModel: populars[index]),
-                        //),
-                        //);
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => BookInfoScreen(
+                                popularBookModel: populars[index]),
+                          ),
+                        );
                       },
                       child: Container(
                         margin: EdgeInsets.only(bottom: 19),
