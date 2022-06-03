@@ -5,6 +5,15 @@ import 'package:elibrary/user/presentations/pages/profile_page/profile_screen.da
 import 'package:flutter/material.dart';
 import 'package:elibrary/models/User.dart';
 
+User currentUser = User(
+    id: 1,
+    account: 'ashpex',
+    name: 'Ashpex',
+    password: '123123',
+    phoneNumber: '099999999',
+    gender: 2,
+    address: '12/12 Random Street');
+
 class UserMain extends StatelessWidget {
   const UserMain({Key? key}) : super(key: key);
 
@@ -18,6 +27,12 @@ class UserMain extends StatelessWidget {
         primarySwatch: Colors.green,
       ),
       home: const MyHomePage(title: 'eLibrary'),
+      routes: {
+        "/homeScreen": (_) => MyHomePage(title: 'eLibrary'),
+        "/bookshelfScreen": (_) => BookShelfScreen(),
+        "/categoryScreen": (_) => CategoryScreen(),
+        "/profileScreen": (_) => ProfileScreen(user: currentUser),
+      },
     );
   }
 }
@@ -36,16 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
     HomeScreen(),
     CategoryScreen(),
     BookShelfScreen(),
-    ProfileScreen(
-      user: User(
-          id: 1,
-          account: 'ashpex',
-          name: 'Ashpex',
-          password: '123123',
-          phoneNumber: '099999999',
-          gender: 2,
-          address: '12/12 Random Street'),
-    )
+    ProfileScreen(user: currentUser),
   ];
 
   @override

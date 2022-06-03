@@ -48,7 +48,7 @@ class BookInfoScreen extends StatelessWidget {
                         child: GestureDetector(
                           onTap: () {
                             Navigator.pushReplacementNamed(
-                                context, "/HomeScreen");
+                                context, "/homeScreen");
                           },
                           child: Container(
                             width: 32,
