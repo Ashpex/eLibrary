@@ -1,5 +1,6 @@
 import 'package:elibrary/librarian/data/sources/constants.dart';
 import 'package:elibrary/presentations/pages/sign_in/components/body.dart';
+import 'package:elibrary/presentations/pages/sign_up/sign_up.dart';
 import 'package:elibrary/presentations/widget/logo_hero.dart';
 import 'package:elibrary/source/color_constants.dart';
 import 'package:flutter/material.dart';
@@ -29,12 +30,12 @@ class SignInPage extends StatelessWidget {
                       padding: const EdgeInsets.only(
                           left: basePadding * 2,
                           right: basePadding * 2,
-                          top: basePadding * 9),
+                          top: basePadding * 5),
                       decoration: const BoxDecoration(
                           color: Colors.white,
                           borderRadius:
                               BorderRadius.vertical(top: Radius.circular(10))),
-                      child: BodySignInComponent(),
+                      child: SignUpComponent(),
                     ),
                   ),
                   flex: 7,
