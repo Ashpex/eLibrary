@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:elibrary/librarian/data/sources/constants.dart';
 import 'package:elibrary/presentations/widget/snack_bar.dart';
+import 'package:elibrary/source/api_constants.dart';
 import 'package:elibrary/user/sources/color_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 import '../../../widget/button.dart';
 import '../../../widget/text.dart';
@@ -73,8 +77,11 @@ class BodySignInComponent extends StatelessWidget {
             child:
                 elevatedButton("Sign up", 17, FontWeight.w800, colorTheme, () {
               if (isUser == true) {
-              } else {
                 signUpLibrarian(context);
+              } else {
+                showSnackBar(
+                    'Please contact with developer to register new librarian account',
+                    context);
               }
             })),
       ],
@@ -84,15 +91,26 @@ class BodySignInComponent extends StatelessWidget {
   void loginLibrarian(BuildContext context) {
     if (checkingNullInfo()) {
       showSnackBar("Information cannot be left blank", context);
-    } else {
-
+      return;
     }
+    sendingAccount(emailController.text, passwordController.text, "0");
   }
 
-  void signUpLibrarian(BuildContext context) {
-    
-  }
+  void signUpLibrarian(BuildContext context) {}
 
   bool checkingNullInfo() =>
       emailController.text == "" || passwordController.text == "";
+}
+
+void sendingAccount(String account, String password, String type) async {
+  Map<String, String> headers = {"Content-type": "application/json"};
+  Map<String, dynamic> body = {
+    'account': account,
+    'password': password,
+    'userType': type
+  };
+  Response response = await post(Uri.parse(api_login),
+      headers: headers, body: json.encode(body));
+  String bodyRespone = response.body;
+  print(bodyRespone);
 }
