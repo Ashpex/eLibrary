@@ -5,6 +5,9 @@ import 'package:elibrary/presentations/widget/logo_hero.dart';
 import 'package:elibrary/source/color_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:delayed_display/delayed_display.dart';
+import 'package:provider/provider.dart';
+
+import '../../provider/login.dart';
 
 class SignInPage extends StatelessWidget {
   bool? isUser;
@@ -12,40 +15,50 @@ class SignInPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-          backgroundColor: colorTheme,
-          resizeToAvoidBottomInset: false,
-          body: Center(
-            child: Column(
-              children: [
-                // Logo App
-                Expanded(
-                    flex: 2,
-                    child: Center(
-                      child: HeroLogo(),
-                    )),
-                // Container textField
-                Expanded(
-                  child: DelayedDisplay(
-                    delay: const Duration(seconds: 2),
-                    child: Container(
-                      padding: const EdgeInsets.only(
-                          left: basePadding * 2,
-                          right: basePadding * 2,
-                          top: basePadding * 5),
-                      decoration: const BoxDecoration(
-                          color: Colors.white,
-                          borderRadius:
-                              BorderRadius.vertical(top: Radius.circular(10))),
-                      child: BodySignInComponent(isUser: isUser),
+    return ChangeNotifierProvider<LoginState>(
+      create: (context) => LoginState(state: LoginEnum.login),
+      child: MaterialApp(
+        home: Scaffold(
+            backgroundColor: colorTheme,
+            resizeToAvoidBottomInset: false,
+            body: Center(
+              child: Column(
+                children: [
+                  // Logo App
+                  Expanded(
+                      flex: 2,
+                      child: Center(
+                        child: HeroLogo(),
+                      )),
+                  // Container textField
+                  Expanded(
+                    child: DelayedDisplay(
+                      delay: const Duration(seconds: 2),
+                      child: Container(
+                        padding: const EdgeInsets.only(
+                            left: basePadding * 2,
+                            right: basePadding * 2,
+                            top: basePadding * 5),
+                        decoration: const BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.vertical(
+                                top: Radius.circular(10))),
+                        child:
+                            Consumer<LoginState>(builder: (context, model, _) {
+                          LoginEnum currentState = model.getState;
+                          if (currentState == LoginEnum.register) {
+                            return SignUpComponent();
+                          }
+                          return BodySignInComponent(isUser: isUser);
+                        }),
+                      ),
                     ),
-                  ),
-                  flex: 7,
-                )
-              ],
-            ),
-          )),
+                    flex: 7,
+                  )
+                ],
+              ),
+            )),
+      ),
     );
   }
 }
