@@ -3,10 +3,14 @@ import 'dart:convert';
 import 'package:elibrary/librarian/data/sources/constants.dart';
 import 'package:elibrary/presentations/widget/snack_bar.dart';
 import 'package:elibrary/source/api_constants.dart';
+import 'package:elibrary/user/presentations/pages/home_page/home_screen.dart';
 import 'package:elibrary/user/sources/color_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:provider/provider.dart';
 
+import '../../../../user/main.dart';
+import '../../../provider/login.dart';
 import '../../../widget/button.dart';
 import '../../../widget/text.dart';
 
@@ -55,10 +59,23 @@ class BodySignInComponent extends StatelessWidget {
             height: 35,
             child:
                 elevatedButton("Sign in", 17, FontWeight.w800, colorTheme, () {
-              if (isUser == true) {
-              } else {
-                loginLibrarian(context);
+              if (checkingNullInfo()) {
+                showSnackBar("Information cannot be left blank", context);
+                return;
               }
+              sendingAccount(emailController.text, passwordController.text,
+                      isUser == true ? '1' : '0', context)
+                  .then((value) {
+                if (value == true) {
+                  Navigator.pushReplacement(
+                      context,
+                      PageRouteBuilder(
+                          transitionDuration: const Duration(seconds: 2),
+                          pageBuilder: (_, __, ___) => UserMain()));
+                } else {
+                  showSnackBar('Cannot login', context);
+                }
+              });
             })),
         const SizedBox(
           height: 20,
@@ -88,21 +105,16 @@ class BodySignInComponent extends StatelessWidget {
     );
   }
 
-  void loginLibrarian(BuildContext context) {
-    if (checkingNullInfo()) {
-      showSnackBar("Information cannot be left blank", context);
-      return;
-    }
-    sendingAccount(emailController.text, passwordController.text, "0");
+  void signUpLibrarian(BuildContext context) {
+    Provider.of<LoginState>(context, listen: false).setPage(LoginEnum.register);
   }
-
-  void signUpLibrarian(BuildContext context) {}
 
   bool checkingNullInfo() =>
       emailController.text == "" || passwordController.text == "";
 }
 
-void sendingAccount(String account, String password, String type) async {
+Future<bool> sendingAccount(
+    String account, String password, String type, context) async {
   Map<String, String> headers = {"Content-type": "application/json"};
   Map<String, dynamic> body = {
     'account': account,
@@ -111,6 +123,11 @@ void sendingAccount(String account, String password, String type) async {
   };
   Response response = await post(Uri.parse(api_login),
       headers: headers, body: json.encode(body));
-  String bodyRespone = response.body;
-  print(bodyRespone);
+  if (response.statusCode != 201) {
+    return false;
+  }
+  Map<String, dynamic> result = json.decode(response.body);
+  Provider.of<LoginState>(context, listen: false)
+      .setToken(result['access_token']);
+  return true;
 }
