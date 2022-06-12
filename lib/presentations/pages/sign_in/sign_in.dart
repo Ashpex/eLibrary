@@ -7,6 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:delayed_display/delayed_display.dart';
 
 class SignInPage extends StatelessWidget {
+  bool? isUser;
+  SignInPage({this.isUser, Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -35,7 +38,7 @@ class SignInPage extends StatelessWidget {
                           color: Colors.white,
                           borderRadius:
                               BorderRadius.vertical(top: Radius.circular(10))),
-                      child: SignUpComponent(),
+                      child: BodySignInComponent(isUser: isUser),
                     ),
                   ),
                   flex: 7,

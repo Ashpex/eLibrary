@@ -6,7 +6,8 @@ import 'package:elibrary/user/main.dart';
 import 'package:flutter/material.dart';
 
 class SplashPage extends StatefulWidget {
-  const SplashPage({Key? key}) : super(key: key);
+  bool? isUser;
+  SplashPage({this.isUser, Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -47,6 +48,6 @@ class _SplashPage extends State<SplashPage> {
         context,
         PageRouteBuilder(
             transitionDuration: const Duration(seconds: 2),
-            pageBuilder: (_, __, ___) => SignInPage()));
+            pageBuilder: (_, __, ___) => SignInPage(isUser: widget.isUser)));
   }
 }
