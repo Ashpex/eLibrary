@@ -34,6 +34,7 @@ class BookPage extends StatelessWidget {
         Image.asset(imagesPath + 'line.png'),
         Expanded(
           child: ListView.builder(
+              shrinkWrap: true,
               itemCount: 100,
               itemBuilder: (context, index) {
                 return Padding(

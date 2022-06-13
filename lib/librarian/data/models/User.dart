@@ -6,8 +6,9 @@ class User {
   String password;
   String name;
   String phoneNumber;
-  int gender;
+  String gender;
   String address;
+  bool isBan;
 
   User(
       {required this.id,
@@ -16,14 +17,18 @@ class User {
       required this.name,
       required this.phoneNumber,
       required this.gender,
-      required this.address});
-}
+      required this.address,
+      required this.isBan});
 
-final librarian = User(
-    id: 1,
-    account: 'ngocnguyenc3',
-    name: 'Ngọc Nguyên',
-    password: '123123',
-    phoneNumber: '0388186506',
-    gender: 1,
-    address: '25/42 Đặng Trần Côn');
+  factory User.fromJson(Map<String, dynamic> map) {
+    return User(
+        id: map["id"],
+        account: map["account"],
+        password: map["password"],
+        name: map["name"],
+        phoneNumber: map["phone_number"],
+        gender: map["gender"],
+        address: map["address"],
+        isBan: map["is_ban"]);
+  }
+}
