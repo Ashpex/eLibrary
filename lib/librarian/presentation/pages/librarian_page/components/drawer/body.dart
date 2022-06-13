@@ -2,8 +2,11 @@ import 'package:elibrary/librarian/core/utils/shadow.dart';
 import 'package:elibrary/librarian/core/utils/text.dart';
 import 'package:elibrary/librarian/data/sources/color_constants.dart';
 import 'package:elibrary/librarian/presentation/provider/state_page.dart';
+import 'package:elibrary/presentations/pages/sign_in/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../../../../../presentations/pages/splash/splash.dart';
 
 class BodyDrawer extends StatelessWidget {
   const BodyDrawer({Key? key}) : super(key: key);
@@ -18,12 +21,16 @@ class BodyDrawer extends StatelessWidget {
             itemBuilder: (context, index) {
               return InkWell(
                 onTap: () {
-                  // if (stateList[index].getState() == StatePage.out) {
-                  //   Navigator.pushReplacement(
-                  //       context,
-                  //       MaterialPageRoute(
-                  //           builder: (context) => const LoginPage()));
-                  // }
+                  if (stateList[index].getPage == PageState.out) {
+                    Scaffold.of(context).openEndDrawer();
+                    Navigator.pushReplacement(
+                        context,
+                        PageRouteBuilder(
+                            transitionDuration: const Duration(seconds: 2),
+                            pageBuilder: (_, __, ___) =>
+                                MaterialApp(home: SplashPage(isUser: false))));
+                    return;
+                  }
                   Provider.of<StatePage>(context, listen: false).setPage(
                       stateList[index].getPage, stateList[index].getName);
                   Scaffold.of(context).openEndDrawer();

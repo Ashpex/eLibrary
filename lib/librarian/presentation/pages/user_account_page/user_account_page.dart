@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:elibrary/librarian/core/utils/text.dart';
-import 'package:elibrary/librarian/data/models/User.dart';
+import 'package:elibrary/librarian/data/models/user.dart';
 import 'package:elibrary/librarian/data/sources/constants.dart';
 import 'package:elibrary/librarian/presentation/pages/books_user_page/books_user_page.dart';
 import 'package:elibrary/librarian/presentation/pages/user_account_page/items/user_item.dart';

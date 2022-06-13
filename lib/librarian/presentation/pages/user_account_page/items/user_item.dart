@@ -1,5 +1,5 @@
 import 'package:elibrary/librarian/core/utils/text.dart';
-import 'package:elibrary/librarian/data/models/User.dart';
+import 'package:elibrary/librarian/data/models/user.dart';
 import 'package:elibrary/librarian/data/sources/color_constants.dart';
 import 'package:flutter/material.dart';
 

@@ -1,11 +1,12 @@
 import 'package:elibrary/librarian/core/utils/text.dart';
+import 'package:elibrary/librarian/data/models/book.dart';
 import 'package:elibrary/librarian/data/sources/color_constants.dart';
 import 'package:flutter/material.dart';
 
 class ItemBook extends StatefulWidget {
-  int id;
+  Book book;
   bool isShow = false;
-  ItemBook({required this.id, Key? key}) : super(key: key);
+  ItemBook({required this.book, Key? key}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return _ItemBook();
@@ -21,12 +22,12 @@ class _ItemBook extends State<ItemBook> {
       children: [
         Expanded(
             flex: 1,
-            child: textWidget(
-                widget.id.toString(), Colors.black, 10.0, FontWeight.w600)),
+            child: textWidget(widget.book.id.toString(), Colors.black, 10.0,
+                FontWeight.w600)),
         Expanded(
             flex: 8,
             child: textWidget(
-                'Vạn cổ thần đế', Colors.black, 10.0, FontWeight.w600)),
+                widget.book.name, Colors.black, 10.0, FontWeight.w600)),
         Expanded(
             flex: 1,
             child: textWidget('Borrowed', Colors.black, 10.0, FontWeight.w600)),

@@ -61,7 +61,8 @@ class MainBody extends StatelessWidget {
                       } else if (page == PageState.book) {
                         return BookPage();
                       } else {
-                        return BookPage();
+                        
+                        return const Spacer();
                       }
                     },
                   )))
