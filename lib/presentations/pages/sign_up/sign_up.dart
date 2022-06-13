@@ -91,7 +91,8 @@ class SignUpComponent extends StatelessWidget {
                             nameController.text,
                             phoneNumberController.text,
                             genderController.text,
-                            addressController.text);
+                            addressController.text,
+                            context);
                       }
                     }))),
             const SizedBox(
@@ -121,12 +122,12 @@ class SignUpComponent extends StatelessWidget {
       addressController == "";
 }
 
-signUpAction(account, password, name, phone, gender, address) async {
+signUpAction(account, password, name, phone, gender, address, context) async {
   Map<String, String> headers = {"Content-type": "application/json"};
   Map<String, dynamic> body = {
     'account': account,
     'password': password,
-    'userType': "1",
+    'userType': '1',
     'name': name,
     'phone_number': phone,
     'gender': gender,
@@ -134,6 +135,12 @@ signUpAction(account, password, name, phone, gender, address) async {
   };
   Response response = await post(Uri.parse(api_regis),
       headers: headers, body: json.encode(body));
+  String result = 'Create Account Success';
   String bodyRespone = response.body;
-  print(bodyRespone);
+  // print(response.statusCode);
+  // print(bodyRespone);
+  if (response.statusCode != 201) {
+    result = json.decode(bodyRespone)['message'];
+  }
+  showSnackBar(result, context);
 }

@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../librarian/main.dart';
 import '../../../../user/main.dart';
 import '../../../provider/login.dart';
 import '../../../widget/button.dart';
@@ -71,7 +72,7 @@ class BodySignInComponent extends StatelessWidget {
                       context,
                       PageRouteBuilder(
                           transitionDuration: const Duration(seconds: 2),
-                          pageBuilder: (_, __, ___) => UserMain()));
+                          pageBuilder: (_, __, ___) => isUser == true?const UserMain():LibrarianMain(name: "Nguyen")));
                 } else {
                   showSnackBar('Cannot login', context);
                 }
