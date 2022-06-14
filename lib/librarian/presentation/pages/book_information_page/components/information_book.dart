@@ -1,15 +1,16 @@
 import 'package:elibrary/librarian/data/models/book.dart';
 import 'package:elibrary/librarian/presentation/pages/book_information_page/book_information_page.dart';
+import 'package:elibrary/librarian/presentation/pages/book_information_page/provider/book_provider.dart';
 import 'package:elibrary/presentations/widget/button.dart';
 import 'package:elibrary/presentations/widget/text.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../source/color_constants.dart';
 import 'cover_page.dart';
 
 class InformationBook extends StatelessWidget {
   Book? book;
-  BookInfoPage? imgCover;
   TextEditingController imgLinkController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController authorController = TextEditingController();
@@ -17,17 +18,20 @@ class InformationBook extends StatelessWidget {
   TextEditingController categoryController = TextEditingController();
   TextEditingController desController = TextEditingController();
 
-  InformationBook({this.book, this.imgCover, Key? key}) : super(key: key);
+  InformationBook({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    book = Provider.of<BookState>(context, listen: false).book;
     setUpTextController();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        textFormField(imgLinkController, null, '', 'Image Link', (value) {}),
+        textFormField(imgLinkController, null, '', 'Image Link', (value) {
+          Provider.of<BookState>(context, listen: false).setLink(value);
+        }),
         textFormField(nameController, null, '', 'Name', (value) {}),
         textFormField(authorController, null, '', 'Author', (value) {}),
         textFormField(starController, null, '', 'Star', (value) {}),
@@ -37,11 +41,31 @@ class InformationBook extends StatelessWidget {
         Expanded(
             child: Row(
           children: [
+            const Spacer(),
             SizedBox(
                 width: 150,
                 height: 35,
                 child: elevatedButton(
-                    "Save", 17, FontWeight.w800, colorTheme, () {}))
+                    "Delete", 17, FontWeight.w800, Colors.red, () {})),
+            const SizedBox(
+              width: 15,
+            ),
+            SizedBox(
+                width: 150,
+                height: 35,
+                child: elevatedButton(
+                    "Reserve List", 17, FontWeight.w800, colorTheme, () {})),
+            const SizedBox(
+              width: 15,
+            ),
+            SizedBox(
+                width: 150,
+                height: 35,
+                child: elevatedButton(
+                    "Save", 17, FontWeight.w800, colorTheme, () {})),
+            const SizedBox(
+              width: 15,
+            ),
           ],
         ))
       ],

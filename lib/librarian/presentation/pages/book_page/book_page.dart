@@ -55,7 +55,7 @@ class BookPage extends StatelessWidget {
                               onTap: () {
                                 showBottomSheet(
                                     context: context,
-                                    builder: (context) => BookInfoPage(book: listBook[index]));
+                                    builder: (_) => BookInfoPage(book: listBook[index]));
                               },
                               child: ItemBook(book: listBook[index])),
                         );

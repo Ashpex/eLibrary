@@ -1,49 +1,39 @@
 import 'package:elibrary/librarian/data/models/book.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'components/cover_page.dart';
 import 'components/information_book.dart';
+import 'provider/book_provider.dart';
 
-class BookInfoPage extends StatefulWidget {
+class BookInfoPage extends StatelessWidget {
   Book? book;
-  _BookInfoPageState _bookInfoPageState = _BookInfoPageState();
   BookInfoPage({required this.book, Key? key}) : super(key: key);
-  void reload() {
-    _bookInfoPageState.reload();
-  }
-  @override
-  State<BookInfoPage> createState() => _bookInfoPageState;
-}
 
-class _BookInfoPageState extends State<BookInfoPage> {
-  void reload() {
-    setState(() {
-      
-    });
-  }
   @override
   Widget build(BuildContext context) {
-
-    return MaterialApp(
-      home: Scaffold(
-        body: Row(mainAxisSize: MainAxisSize.max, children: [
-          Expanded(
-            child: ImageCover(
-      link: widget.book!.img_link,
-    ),
-            flex: 11,
-          ),
-          const SizedBox(
-            width: 30,
-          ),
-          Expanded(
-            child: InformationBook(
-              book: widget.book,
-              imgCover: widget,
+    return ChangeNotifierProvider<BookState>(
+      create: (_) => BookState(book: book!),
+      child: MaterialApp(
+        home: Scaffold(
+          body: Row(mainAxisSize: MainAxisSize.max, children: [
+            Expanded(
+              child: Consumer<BookState>(builder: (__, model, _) {
+                return ImageCover(
+                  link: model.book.img_link,
+                );
+              }),
+              flex: 11,
             ),
-            flex: 19,
-          )
-        ]),
+            const SizedBox(
+              width: 30,
+            ),
+            Expanded(
+              child: InformationBook(),
+              flex: 19,
+            )
+          ]),
+        ),
       ),
     );
   }
