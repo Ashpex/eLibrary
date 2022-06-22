@@ -228,7 +228,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height: 5,
                                 ),
                                 Text(
-                                  'Rating: ', //+ populars[index].rating,
+                                  'Rating: 5', //+ populars[index].rating,
                                   style: GoogleFonts.openSans(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,

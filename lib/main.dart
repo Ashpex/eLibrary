@@ -9,7 +9,7 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   // Set max min size windows app
   //testWindowFunctions();
-  runApp(MaterialApp(home: SplashPage(isUser: false)));
+  runApp(MaterialApp(home: SplashPage(isUser: true)));
   //runApp(UserMain());
 }
 

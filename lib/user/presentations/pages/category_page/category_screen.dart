@@ -182,7 +182,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                   height: 10,
                                 ),
                                 Text(
-                                  'Rating: ', //+ populars[index].rating,
+                                  'Rating: 5', //+ populars[index].rating,
                                   style: GoogleFonts.openSans(
                                       fontSize: 17,
                                       fontWeight: FontWeight.w600,
