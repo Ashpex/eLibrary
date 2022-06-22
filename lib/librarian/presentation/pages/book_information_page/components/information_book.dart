@@ -11,6 +11,7 @@ import 'cover_page.dart';
 
 class InformationBook extends StatelessWidget {
   Book? book;
+  bool isAdd;
   TextEditingController imgLinkController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController authorController = TextEditingController();
@@ -18,7 +19,7 @@ class InformationBook extends StatelessWidget {
   TextEditingController categoryController = TextEditingController();
   TextEditingController desController = TextEditingController();
 
-  InformationBook({Key? key}) : super(key: key);
+  InformationBook({Key? key, required this.isAdd}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,19 +43,21 @@ class InformationBook extends StatelessWidget {
             child: Row(
           children: [
             const Spacer(),
-            SizedBox(
-                width: 150,
-                height: 35,
-                child: elevatedButton(
-                    "Delete", 17, FontWeight.w800, Colors.red, () {})),
+            if (!isAdd)
+              SizedBox(
+                  width: 150,
+                  height: 35,
+                  child: elevatedButton(
+                      "Delete", 17, FontWeight.w800, Colors.red, () {})),
             const SizedBox(
               width: 15,
             ),
-            SizedBox(
-                width: 150,
-                height: 35,
-                child: elevatedButton(
-                    "Reserve List", 17, FontWeight.w800, colorTheme, () {})),
+            if (!isAdd)
+              SizedBox(
+                  width: 150,
+                  height: 35,
+                  child: elevatedButton(
+                      "Reserve List", 17, FontWeight.w800, colorTheme, () {})),
             const SizedBox(
               width: 15,
             ),

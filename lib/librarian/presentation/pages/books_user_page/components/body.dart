@@ -27,11 +27,10 @@ class BodyBooksUser extends StatelessWidget {
         Image.asset(imagesPath + 'line.png'),
         Expanded(
           child: ListView.builder(
-              itemCount: 100,
+              itemCount: 2,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding:
-                      const EdgeInsets.only(top: 5.0),
+                  padding: const EdgeInsets.only(top: 5.0),
                   child: ItemBooksUser(id: index),
                 );
               }),

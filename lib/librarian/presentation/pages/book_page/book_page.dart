@@ -21,7 +21,13 @@ class BookPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         IconButton(
-            color: colorTheme, onPressed: () {}, icon: const Icon(Icons.add)),
+            color: colorTheme,
+            onPressed: () {
+              showBottomSheet(
+                  context: context,
+                  builder: (_) => BookInfoPage(book: book_cons, isAdd: true));
+            },
+            icon: const Icon(Icons.add)),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -40,41 +46,43 @@ class BookPage extends StatelessWidget {
           ],
         ),
         Image.asset(imagesPath + 'line.png'),
-        Consumer<StatePage>(builder: ((_, value, __) {
-          return FutureBuilder<List<Book>>(
-            future: fetchBook(token),
-            builder: ((context, snapshot) {
-              if (snapshot.hasData) {
-                List<Book> _listBook = snapshot.data!;
-                List<Book> listBook = [];
-                for(Book frag in _listBook) {
-                  if(frag.name.contains(value.searchBook)) {
-                    listBook.add(frag);
+        Consumer<StatePage>(
+          builder: ((_, value, __) {
+            return FutureBuilder<List<Book>>(
+                future: fetchBook(token),
+                builder: ((context, snapshot) {
+                  if (snapshot.hasData) {
+                    List<Book> _listBook = snapshot.data!;
+                    List<Book> listBook = [];
+                    for (Book frag in _listBook) {
+                      if (frag.name.contains(value.searchBook)) {
+                        listBook.add(frag);
+                      }
+                    }
+                    return Expanded(
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: listBook.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.only(top: 5.0),
+                              child: InkWell(
+                                  onTap: () {
+                                    showBottomSheet(
+                                        context: context,
+                                        builder: (_) => BookInfoPage(
+                                            book: listBook[index], isAdd: false));
+                                  },
+                                  child: ItemBook(book: listBook[index])),
+                            );
+                          }),
+                    );
+                  } else {
+                    return const Center(child: CircularProgressIndicator());
                   }
-                }
-                return Expanded(
-                  child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: listBook.length,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.only(top: 5.0),
-                          child: InkWell(
-                              onTap: () {
-                                showBottomSheet(
-                                    context: context,
-                                    builder: (_) => BookInfoPage(book: listBook[index]));
-                              },
-                              child: ItemBook(book: listBook[index])),
-                        );
-                      }),
-                );
-              } else {
-                return const Center(child: CircularProgressIndicator());
-              }
-            }));
-        }),)
-        
+                }));
+          }),
+        )
       ],
     );
   }

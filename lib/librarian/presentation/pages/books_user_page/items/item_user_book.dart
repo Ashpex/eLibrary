@@ -6,6 +6,7 @@ class ItemBooksUser extends StatefulWidget {
   int id;
   int state = 2;
   ItemBooksUser({required this.id, Key? key}) : super(key: key);
+  var list = ['One punch man', 'One piece'];
   @override
   State<StatefulWidget> createState() {
     return _ItemBooksUser();
@@ -24,11 +25,12 @@ class _ItemBooksUser extends State<ItemBooksUser> {
             child: Align(
               child: textWidget(
                   widget.id.toString(), Colors.black, 10.0, FontWeight.w600),
+              alignment: Alignment.centerLeft,
             )),
         Expanded(
             flex: 8,
             child: textWidget(
-                'Vạn cổ thần đế', Colors.black, 10.0, FontWeight.w600)),
+                widget.list[widget.id], Colors.black, 10.0, FontWeight.w600)),
         Expanded(
             flex: 1,
             child: SizedBox(
