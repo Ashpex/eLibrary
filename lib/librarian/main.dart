@@ -1,16 +1,8 @@
 import 'package:elibrary/librarian/presentation/pages/librarian_page/librarian_page.dart';
+import 'package:elibrary/presentations/provider/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft])
-      .then((_) {
-    runApp(LibrarianMain(
-      name: "Nguyên",
-    ));
-  });
-}
+import 'package:provider/provider.dart';
 
 class LibrarianMain extends StatelessWidget {
   String name;
@@ -19,7 +11,8 @@ class LibrarianMain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: LibrarianPage(name: "Nguyen"),
+      home: LibrarianPage(
+          ),
     );
   }
 }

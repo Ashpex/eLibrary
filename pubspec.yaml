@@ -33,6 +33,7 @@ dependencies:
   delayed_display: ^2.0.0
   flutter:
     sdk: flutter
+  desktop_window: ^0.4.0
   flutter_svg: ^1.0.3
   google_fonts: ^3.0.1
   provider: ^6.0.2

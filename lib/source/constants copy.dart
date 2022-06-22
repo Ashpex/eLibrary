@@ -9,3 +9,4 @@ const imagesPath = 'assets/images/';
 // link
 const imageLink =
     'https://png.pngtree.com/png-vector/20191027/ourlarge/pngtree-book-cover-template-vector-realistic-illustration-isolated-on-gray-background-empty-png-image_1893997.jpg';
+const imgError = 'https://i.pinimg.com/236x/62/ab/c6/62abc6af1bb1dfe271298d9732710277.jpg';

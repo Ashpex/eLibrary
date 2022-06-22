@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../source/color_constants.dart';
-import 'cover_page.dart';
 
 class InformationBook extends StatelessWidget {
   Book? book;
@@ -42,22 +41,6 @@ class InformationBook extends StatelessWidget {
             child: Row(
           children: [
             const Spacer(),
-            SizedBox(
-                width: 150,
-                height: 35,
-                child: elevatedButton(
-                    "Delete", 17, FontWeight.w800, Colors.red, () {})),
-            const SizedBox(
-              width: 15,
-            ),
-            SizedBox(
-                width: 150,
-                height: 35,
-                child: elevatedButton(
-                    "Reserve List", 17, FontWeight.w800, colorTheme, () {})),
-            const SizedBox(
-              width: 15,
-            ),
             SizedBox(
                 width: 150,
                 height: 35,

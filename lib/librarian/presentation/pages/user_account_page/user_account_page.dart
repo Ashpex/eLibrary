@@ -1,8 +1,16 @@
+import 'dart:convert';
+
 import 'package:elibrary/librarian/core/utils/text.dart';
+import 'package:elibrary/librarian/data/models/user.dart';
 import 'package:elibrary/librarian/data/sources/constants.dart';
 import 'package:elibrary/librarian/presentation/pages/books_user_page/books_user_page.dart';
 import 'package:elibrary/librarian/presentation/pages/user_account_page/items/user_item.dart';
+import 'package:elibrary/librarian/presentation/provider/state_page.dart';
+import 'package:elibrary/presentations/provider/login.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'api_call.dart';
 
 class TableAccountPage extends StatelessWidget {
   @override
@@ -33,25 +41,47 @@ class TableAccountPage extends StatelessWidget {
           ],
         ),
         Image.asset(imagesPath + 'line.png'),
-        Expanded(
-          child: ListView.builder(
-              itemCount: 100,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(top: 5.0),
-                  child: InkWell(
-                      onTap: () {
-                        showBottomSheet(
-                            context: context,
-                            builder: (context) {
-                              return const BooksUserPage();
-                            });
-                      },
-                      child: ItemUser(id: index)),
+        // Get data from api
+        Consumer<StatePage>(builder: ((__, value, _) {
+          return FutureBuilder<List<User>>(
+            future: fetchUser(Provider.of<LoginState>(context, listen: false).getToken),
+            builder: ((context, snapshot) {
+              if (snapshot.hasData) {
+                List<User> _listUser = snapshot.data!;
+                List<User> listUser = [];
+                for(User frag in _listUser) {
+                  if(frag.account.contains(value.searchUser)) {
+                    listUser.add(frag);
+                  }
+                }
+                return Expanded(
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: listUser.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 5.0),
+                          child: InkWell(
+                              onTap: () {
+                                showBottomSheet(
+                                    context: context,
+                                    builder: (context) {
+                                      return const BooksUserPage();
+                                    });
+                              },
+                              child: ItemUser(user: listUser[index])),
+                        );
+                      }),
                 );
-              }),
-        )
+              } else {
+                return const Center(child: CircularProgressIndicator());
+              }
+            }));
+        }))
+        
       ],
     );
   }
+
+  
 }

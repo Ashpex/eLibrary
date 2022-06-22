@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../librarian/main.dart';
 import '../../../../user/main.dart';
 import '../../../provider/login.dart';
 import '../../../widget/button.dart';
@@ -64,14 +65,16 @@ class BodySignInComponent extends StatelessWidget {
                 return;
               }
               sendingAccount(emailController.text, passwordController.text,
-                      isUser == true ? '1' : '0', context)
+                      isUser == true ? 1 : 0, context)
                   .then((value) {
                 if (value == true) {
                   Navigator.pushReplacement(
                       context,
                       PageRouteBuilder(
                           transitionDuration: const Duration(seconds: 2),
-                          pageBuilder: (_, __, ___) => UserMain()));
+                          pageBuilder: (_, __, ___) => isUser == true
+                              ? const UserMain()
+                              : LibrarianMain(name: "Nguyen")));
                 } else {
                   showSnackBar('Cannot login', context);
                 }
@@ -114,12 +117,12 @@ class BodySignInComponent extends StatelessWidget {
 }
 
 Future<bool> sendingAccount(
-    String account, String password, String type, context) async {
+    String account, String password, int type, context) async {
   Map<String, String> headers = {"Content-type": "application/json"};
   Map<String, dynamic> body = {
     'account': account,
     'password': password,
-    'userType': type
+    'userType': type 
   };
   Response response = await post(Uri.parse(api_login),
       headers: headers, body: json.encode(body));
@@ -127,7 +130,9 @@ Future<bool> sendingAccount(
     return false;
   }
   Map<String, dynamic> result = json.decode(response.body);
-  Provider.of<LoginState>(context, listen: false)
-      .setToken(result['access_token']);
+  var r = Provider.of<LoginState>(context, listen: false);
+  r.setToken(result['access_token']);
+  r.setId(result['id']);
+  r.setUserName(result['username']);
   return true;
 }

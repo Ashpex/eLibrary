@@ -8,8 +8,7 @@ import 'components/drawer/body.dart';
 import 'components/drawer/header.dart';
 
 class LibrarianPage extends StatelessWidget {
-  String name;
-  LibrarianPage({required this.name, Key? key}) : super(key: key);
+  LibrarianPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

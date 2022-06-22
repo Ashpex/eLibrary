@@ -15,8 +15,15 @@ Widget textWidget(text, color, size, fontWeight, {TextAlign? textAlign}) {
   );
 }
 
-Widget textFormField(controller, icon, hintText, labelText, onChanged) {
+Widget textFormField(
+  controller,
+  icon,
+  hintText,
+  labelText,
+  onChanged,
+) {
   return TextFormField(
+    maxLines: calcLine(controller.text),
     controller: controller,
     style: const TextStyle(color: Colors.black),
     decoration: inputDecoration(icon, hintText, labelText),
@@ -24,6 +31,13 @@ Widget textFormField(controller, icon, hintText, labelText, onChanged) {
     onChanged: onChanged,
     
   );
+}
+
+int calcLine(String message) {
+  int len = message.length;
+  if (len < 100) return 1;
+  int result = (len / 100).ceil();
+  return result;
 }
 
 InputDecoration inputDecoration(icon, hintText, labelText) {

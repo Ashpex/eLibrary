@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'shadow.dart';
 
-Widget searchBox(controller) {
+Widget searchBox(controller, onChanged) {
   return Container(
     width: 300,
     height: 40,
@@ -14,6 +14,7 @@ Widget searchBox(controller) {
     ], borderRadius: const BorderRadius.all(Radius.circular(baseRadius + 5.0))),
     child: TextFormField(
         controller: controller,
+        onChanged: onChanged,
         style: textStyle(Colors.black54, 14, FontWeight.w500),
         decoration: InputDecoration(
           suffixIcon: const Icon(

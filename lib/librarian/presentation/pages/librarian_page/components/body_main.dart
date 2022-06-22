@@ -46,13 +46,20 @@ class MainBody extends StatelessWidget {
                     27,
                     FontWeight.w800),
                 const Spacer(),
-                searchBox(searchController),
+                searchBox(searchController, (value) {
+                  var ref = Provider.of<StatePage>(context, listen: false);
+                  if (ref.getPage == PageState.account) {
+                    ref.setSearchUser(value);
+                  } else {
+                    ref.setSearchBook(value);
+                  }
+                }),
               ],
             ),
           ),
           Expanded(
               child: Container(
-                  margin: EdgeInsets.all(10.0),
+                  margin: const EdgeInsets.all(10.0),
                   child: Consumer<StatePage>(
                     builder: (context, model, _) {
                       PageState page = model.getPage;
@@ -61,7 +68,7 @@ class MainBody extends StatelessWidget {
                       } else if (page == PageState.book) {
                         return BookPage();
                       } else {
-                        return BookPage();
+                        return const Spacer();
                       }
                     },
                   )))
