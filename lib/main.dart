@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:elibrary/user/main.dart';
 import 'package:elibrary/user/sources/color_constants.dart';
-import 'package:desktop_window/desktop_window.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

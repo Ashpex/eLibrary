@@ -1,9 +1,7 @@
 import 'package:elibrary/librarian/core/utils/text.dart';
-import 'package:elibrary/librarian/data/models/user.dart';
+import 'package:elibrary/librarian/data/models/User.dart';
 import 'package:elibrary/librarian/data/sources/color_constants.dart';
 import 'package:flutter/material.dart';
-
-
 
 class ItemUser extends StatefulWidget {
   User user;
@@ -23,8 +21,8 @@ class _ItemUser extends State<ItemUser> {
       children: [
         Expanded(
             flex: 1,
-            child: textWidget(
-                widget.user.id.toString(), Colors.black, 10.0, FontWeight.w600)),
+            child: textWidget(widget.user.id.toString(), Colors.black, 10.0,
+                FontWeight.w600)),
         Expanded(
             flex: 4,
             child: textWidget(
@@ -44,16 +42,16 @@ class _ItemUser extends State<ItemUser> {
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
                       widget.user.isBan ? Colors.red : colorTheme),
-                  padding:
-                      MaterialStateProperty.all<EdgeInsets>(const EdgeInsets.all(0)),
+                  padding: MaterialStateProperty.all<EdgeInsets>(
+                      const EdgeInsets.all(0)),
                 ),
                 onPressed: () {
                   setState(() {
                     widget.user.isBan = !widget.user.isBan;
                   });
                 },
-                child: textWidget(widget.user.isBan ? 'Yes' : 'No', Colors.white,
-                    10.0, FontWeight.w600),
+                child: textWidget(widget.user.isBan ? 'Yes' : 'No',
+                    Colors.white, 10.0, FontWeight.w600),
               ),
             ))
       ],
