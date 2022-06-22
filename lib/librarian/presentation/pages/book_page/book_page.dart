@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../presentations/provider/login.dart';
+import '../../provider/state_page.dart';
 import 'api_call.dart';
 
 class BookPage extends StatelessWidget {
@@ -39,11 +40,18 @@ class BookPage extends StatelessWidget {
           ],
         ),
         Image.asset(imagesPath + 'line.png'),
-        FutureBuilder<List<Book>>(
+        Consumer<StatePage>(builder: ((_, value, __) {
+          return FutureBuilder<List<Book>>(
             future: fetchBook(token),
             builder: ((context, snapshot) {
               if (snapshot.hasData) {
-                List<Book> listBook = snapshot.data!;
+                List<Book> _listBook = snapshot.data!;
+                List<Book> listBook = [];
+                for(Book frag in _listBook) {
+                  if(frag.name.contains(value.searchBook)) {
+                    listBook.add(frag);
+                  }
+                }
                 return Expanded(
                   child: ListView.builder(
                       shrinkWrap: true,
@@ -64,7 +72,9 @@ class BookPage extends StatelessWidget {
               } else {
                 return const Center(child: CircularProgressIndicator());
               }
-            }))
+            }));
+        }),)
+        
       ],
     );
   }

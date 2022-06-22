@@ -31,8 +31,11 @@ class BodyDrawer extends StatelessWidget {
                                 MaterialApp(home: SplashPage(isUser: false))));
                     return;
                   }
-                  Provider.of<StatePage>(context, listen: false).setPage(
+                  var ref = Provider.of<StatePage>(context, listen: false);
+                  ref.setPage(
                       stateList[index].getPage, stateList[index].getName);
+                  ref.searchBook = "";
+                  ref.searchUser ="";
                   Scaffold.of(context).openEndDrawer();
                 },
                 child: Consumer<StatePage>(

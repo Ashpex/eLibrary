@@ -11,7 +11,6 @@ class Book {
   List<String> genres;
   String add_date;
   Author author;
-
   Book(
       {required this.id,
       required this.name,

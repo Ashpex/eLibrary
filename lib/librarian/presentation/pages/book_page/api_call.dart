@@ -12,8 +12,11 @@ Future<List<Book>> fetchBook(token) async {
     'Authorization': 'Bearer $token'
   };
   final response = await http.get(Uri.parse(api_all_book), headers: headers);
-  for (var token in json.decode(response.body)) {
-    listBook.add(Book.fromJson(token));
+  if (response.statusCode == 201 || response.statusCode == 200) {
+    for (var token in json.decode(response.body)) {
+      listBook.add(Book.fromJson(token));
+    }
   }
+
   return Future.value(listBook);
 }

@@ -18,7 +18,9 @@ class HeaderBooksUser extends StatelessWidget {
         children: [               
           textWidget('List Book', colorTheme, 27, FontWeight.w800),
           const Spacer(),
-          searchBox(searchController),
+          searchBox(searchController, (value) {
+            
+          }),
         ],
       ),
     );

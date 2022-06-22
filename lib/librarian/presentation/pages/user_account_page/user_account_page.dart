@@ -5,7 +5,10 @@ import 'package:elibrary/librarian/data/models/user.dart';
 import 'package:elibrary/librarian/data/sources/constants.dart';
 import 'package:elibrary/librarian/presentation/pages/books_user_page/books_user_page.dart';
 import 'package:elibrary/librarian/presentation/pages/user_account_page/items/user_item.dart';
+import 'package:elibrary/librarian/presentation/provider/state_page.dart';
+import 'package:elibrary/presentations/provider/login.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'api_call.dart';
 
@@ -39,11 +42,18 @@ class TableAccountPage extends StatelessWidget {
         ),
         Image.asset(imagesPath + 'line.png'),
         // Get data from api
-        FutureBuilder<List<User>>(
-            future: fetchUser(),
+        Consumer<StatePage>(builder: ((__, value, _) {
+          return FutureBuilder<List<User>>(
+            future: fetchUser(Provider.of<LoginState>(context, listen: false).getToken),
             builder: ((context, snapshot) {
               if (snapshot.hasData) {
-                List<User> listUser = snapshot.data!;
+                List<User> _listUser = snapshot.data!;
+                List<User> listUser = [];
+                for(User frag in _listUser) {
+                  if(frag.account.contains(value.searchUser)) {
+                    listUser.add(frag);
+                  }
+                }
                 return Expanded(
                   child: ListView.builder(
                       shrinkWrap: true,
@@ -66,7 +76,9 @@ class TableAccountPage extends StatelessWidget {
               } else {
                 return const Center(child: CircularProgressIndicator());
               }
-            }))
+            }));
+        }))
+        
       ],
     );
   }

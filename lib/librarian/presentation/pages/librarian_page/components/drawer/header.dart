@@ -2,8 +2,10 @@ import 'package:elibrary/librarian/core/utils/shadow.dart';
 import 'package:elibrary/librarian/core/utils/text.dart';
 import 'package:elibrary/librarian/data/sources/color_constants.dart';
 import 'package:elibrary/librarian/data/sources/constants.dart';
+import 'package:elibrary/presentations/provider/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class HeaderDrawer extends StatelessWidget {
   const HeaderDrawer({Key? key}) : super(key: key);
@@ -38,11 +40,12 @@ class HeaderDrawer extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              textShadowWidget('Admin 1', Colors.red, 28.0, FontWeight.w800),
+              textShadowWidget('Admin', Colors.red, 28.0, FontWeight.w800),
               const SizedBox(
                 height: 5,
               ),
-              textWidget('Bá Vũ', colorBlueTheme, 24.0, FontWeight.w600),
+              textWidget(Provider.of<LoginState>(context, listen: false).name,
+                  colorBlueTheme, 24.0, FontWeight.w600),
               const SizedBox(
                 height: 5,
               ),
