@@ -1,6 +1,8 @@
 import 'package:elibrary/presentations/widget/text.dart';
 import 'package:flutter/material.dart';
 
+import '../../librarian/data/sources/color_constants.dart';
+
 ButtonStyle buttonStyle(color) {
   return ButtonStyle(
       backgroundColor: MaterialStateProperty.all<Color>(color),
@@ -24,6 +26,12 @@ ButtonStyle buttonStyle(color) {
 Widget elevatedButton(text, fontSize, fontWeight, color, onTap) {
   return ElevatedButton(
       child: textWidget(text, Colors.white, fontSize, fontWeight),
+      style: buttonStyle(color),
+      onPressed: onTap);
+}
+Widget elevatedButton1(text, fontSize, fontWeight, color, onTap) {
+  return ElevatedButton(
+      child: textWidget(text, colorTheme, fontSize, fontWeight),
       style: buttonStyle(color),
       onPressed: onTap);
 }

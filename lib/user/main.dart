@@ -31,7 +31,7 @@ class UserMain extends StatelessWidget {
         "/homeScreen": (_) => MyHomePage(title: 'eLibrary'),
         "/bookshelfScreen": (_) => BookShelfScreen(),
         "/categoryScreen": (_) => CategoryScreen(),
-        "/profileScreen": (_) => ProfileScreen(user: currentUser),
+        "/profileScreen": (_) => ProfileScreen(),
       },
     );
   }
@@ -51,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
     HomeScreen(),
     CategoryScreen(),
     BookShelfScreen(),
-    ProfileScreen(user: currentUser),
+    ProfileScreen(),
   ];
 
   @override
