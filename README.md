@@ -15,6 +15,7 @@ At `lib/main.dart`, edit the following line to switch between user and admin app
 ```dart
 runApp(MaterialApp(home: SplashPage(isUser: true)));
 ```
+
     - `isUser:true` : user interface
     - `isUser:false`: librarian interface
 
