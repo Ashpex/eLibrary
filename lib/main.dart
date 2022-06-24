@@ -1,3 +1,4 @@
+import 'package:desktop_window/desktop_window.dart';
 import 'package:elibrary/presentations/pages/splash/splash.dart';
 import 'package:elibrary/user/main.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,7 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   // Set max min size windows app
   //testWindowFunctions();
-  runApp(MaterialApp(home: SplashPage(isUser: false)));
+  runApp(MaterialApp(home: SplashPage(isUser: true)));
   //runApp(UserMain());
 }
 

@@ -7,13 +7,14 @@ import 'components/information_book.dart';
 import 'provider/book_provider.dart';
 
 class BookInfoPage extends StatelessWidget {
-  Book? book;
-  BookInfoPage({required this.book, Key? key}) : super(key: key);
+  Book book;
+  bool isAdd = false;
+  BookInfoPage({required this.book, Key? key, required this.isAdd}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<BookState>(
-      create: (_) => BookState(book: book!),
+      create: (_) => BookState(book: book),
       child: MaterialApp(
         home: Scaffold(
           body: Row(mainAxisSize: MainAxisSize.max, children: [
@@ -29,7 +30,7 @@ class BookInfoPage extends StatelessWidget {
               width: 30,
             ),
             Expanded(
-              child: InformationBook(),
+              child: InformationBook(isAdd: isAdd),
               flex: 19,
             )
           ]),
